@@ -68,7 +68,7 @@ def delete():
         conn.commit()
         conn.close()
 
-def updatemain():
+def update():
         conn = psycopg2.connect(
 			host = "localhost", 
 		database = "project",
@@ -85,7 +85,7 @@ def updatemain():
         conn.commit()
         conn.close()
 
-def update():
+def record():
 	# Configure and connect to Postgres
 	conn = psycopg2.connect(
 			host = "localhost", 
@@ -127,7 +127,7 @@ l_name.grid(row=1, column=1, pady=10, padx=10)
 submit_button = Button(my_frame, text="submit", command=submit)
 submit_button.grid(row=3, column=0, pady=10, padx=10)
 
-update_button = Button(my_frame, text="record", command=update)
+update_button = Button(my_frame, text="record", command=record)
 update_button.grid(row=3, column=1, pady=10, padx=10)
 
 delete_button = Button(my_frame, text="delete", command=delete)
@@ -136,7 +136,7 @@ delete_button.grid(row=3, column=2, pady=10, padx=10)
 clear_button = Button(my_frame, text="clear", command=clear)
 clear_button.grid(row=4, column=2, pady=10, padx=10)
 
-update_button = Button(my_frame, text="Update", command=updatemain)
+update_button = Button(my_frame, text="Update", command=update)
 update_button.grid(row=4, column=0, pady=10, padx=10)
 
 
