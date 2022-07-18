@@ -1,6 +1,5 @@
 from tkinter import *
 import psycopg2
-from datetime import datetime
 
 
 root = Tk()
