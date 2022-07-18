@@ -1,7 +1,7 @@
 from tkinter import *
 import psycopg2
 from datetime import datetime
-# postgresql-cubic-98264
+
 
 root = Tk()
 root.title('postgres')
@@ -12,7 +12,6 @@ def clear():
 	l_name.delete(0, END)
 
 def query():
-	# Configure and connect to Postgres
 	conn = psycopg2.connect(
 		host = "localhost", 
 		database = "project",
@@ -21,11 +20,8 @@ def query():
 		port = "5432",
 		)
 
-
-	# Create a cursor
 	c = conn.cursor()
 
-	# Create a Table
 	c.execute('''CREATE TABLE IF NOT EXISTS m_reserved
 		(mid char(4),book_id int,retdate DATE,issuedate DATE DEFAULT CURRENT_DATE,duedate DATE DEFAULT CURRENT_DATE +7,
                 duefee  float, primary key(book_id),
@@ -36,7 +32,6 @@ def query():
 	conn.close()
 
 def submit():
-	# Configure and connect to Postgres
 	conn = psycopg2.connect(
 			host = "localhost", 
 		database = "project",
@@ -44,7 +39,6 @@ def submit():
 		password = "Pes@123", 
 		port = "5432",
 		)
-	# Create a cursor
 	c = conn.cursor()
 
 	# Insert data into table
@@ -61,7 +55,6 @@ def submit():
 	clear()
 
 def delete():
-	# Configure and connect to Postgres
         conn = psycopg2.connect(
 			host = "localhost", 
 		database = "project",
@@ -77,7 +70,6 @@ def delete():
         conn.close()
 
 def updatemain():
-        # Configure and connect to Postgres
         conn = psycopg2.connect(
 			host = "localhost", 
 		database = "project",
@@ -104,23 +96,19 @@ def update():
 		port = "5432",
 		)
 
-	# Create a cursor
 	c = conn.cursor()
 
-	# Grab stuff from online database
 	c.execute("SELECT * FROM m_reserved")
 	records = c.fetchall()
 
 	output = ''
 
-	# Loop thru the results
 	for record in records:
 		output_label.config(text=f'{output}\n{record[0]}    {record[1]}     {record[2]}    {record[3]}    {record[4]}    {record[5]}')
 		output = output_label['text']
 
 	conn.close()
-
-# Create The GUI For The App
+	
 my_frame = LabelFrame(root, text="Library database")
 my_frame.pack(pady=20)
 
